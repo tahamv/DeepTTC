@@ -79,5 +79,3 @@ if __name__ == '__main__':
     traindata, train_rnadata, testdata, test_rnadata = obj.encode(
         traindata=traindata,
         testdata=testdata)
-
-    print(traindata, train_rnadata, testdata, test_rnadata)

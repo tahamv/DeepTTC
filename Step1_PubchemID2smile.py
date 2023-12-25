@@ -13,7 +13,9 @@ import os,sys
 import pandas as pd
 import pubchempy as pcp
 import pickle5 as pickle
+import ssl
 
+ssl._create_default_https_context = ssl._create_unverified_context
 pub_file = sys.argv[1]
 pub_df = pd.read_csv(pub_file)
 pub_df = pub_df.dropna(subset=['PubCHEM'])

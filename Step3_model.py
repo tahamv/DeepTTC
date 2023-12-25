@@ -137,7 +137,7 @@ class DeepTTC:
         model_drug = transformer()
         model_gene = MLP()
         self.model = Classifier(model_drug,model_gene)
-        self.device = torch.device('cuda:0')
+        self.device = torch.device('cpu')
         self.modeldir = modeldir
         self.record_file = os.path.join(self.modeldir, "valid_markdowntable.txt")
         self.pkl_file = os.path.join(self.modeldir, "loss_curve_iter.pkl")
@@ -311,7 +311,7 @@ if __name__ == '__main__':
 
     # step1 数据切分
     from Step2_DataEncoding import DataEncoding
-    vocab_dir = '/home/jlk/Project/023_CancerTrans/DeepTTC'
+    vocab_dir = '.'
     obj = DataEncoding(vocab_dir=vocab_dir)
 
     # 切分完成
@@ -322,7 +322,7 @@ if __name__ == '__main__':
         testdata=testdata)
 
     # step2：构造模型
-    modeldir = '/home/jlk/Project/023_CancerTrans/DeepTTC/Model_80'
+    modeldir = './Model_80'
     modelfile = modeldir + '/model.pt'
     if not os.path.exists(modeldir):
         os.mkdir(modeldir)
@@ -331,6 +331,7 @@ if __name__ == '__main__':
     net.train(train_drug=traindata, train_rna=train_rnadata,
               val_drug=testdata, val_rna=test_rnadata)
     net.save_model()
+    net.predict(testdata,test_rnadata)
     print("Model Saveed :{}".format(modelfile))
 
 

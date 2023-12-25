@@ -1,4 +1,4 @@
-PATH='./'
+PATH='.'
 rnafile = PATH + '/Cell_line_RMA_proc_basalExp.txt'
 smilefile = PATH + '/smile_inchi.csv'
 pairfile = PATH + '/GDSC2_fitted_dose_response_25Feb20.xlsx'
